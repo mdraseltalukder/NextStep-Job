@@ -13,12 +13,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import useFetch from "@/Hooks/useFetch";
+import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
 import { SelectGroup } from "@radix-ui/react-select";
 import { useEffect, useState } from "react";
 
-export default function AllJobs({ handleHiring, singleJobs }) {
+export default function AllJobs() {
   const { isLoaded } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [company, setCompany] = useState("");
