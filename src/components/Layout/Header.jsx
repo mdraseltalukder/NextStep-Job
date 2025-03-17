@@ -7,11 +7,12 @@ import {
   useUser,
 } from "@clerk/clerk-react";
 import { Briefcase, ChevronDown, LayoutDashboard } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import ThemeToggle from "../mode-toggle";
 export default function Header() {
   const { user } = useUser();
+  const navbarRef = useRef(null);
 
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
@@ -25,11 +26,35 @@ export default function Header() {
       setSearch();
     }
   };
+
   useEffect(() => {
     if (search.get("sign-in")) {
       setShowSignin(true);
     }
   }, [search]);
+
+  // Handle click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsToggleOpen(false);
+      }
+    }
+
+    // Add event listener when menu is open
+    if (isToggleOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    // Cleanup
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isToggleOpen]);
+
+  // Handle nav link click
+  const handleNavLinkClick = () => {
+    setIsToggleOpen(false);
+  };
 
   return (
     <>
@@ -96,6 +121,7 @@ ${
                     aria-haspopup="false"
                     className="flex items-center gap-2 py-4 transition-colors duration-300 font-medium text-xl hover:text-indigo-600 focus:text-indigo-600 focus:outline-none focus-visible:outline-none lg:px-8"
                     to="/"
+                    onClick={handleNavLinkClick}
                   >
                     <span className="flex gap-1 items-end">
                       Home <ChevronDown className=" w-4" />
@@ -109,6 +135,7 @@ ${
                     aria-haspopup="false"
                     className="flex items-center gap-2 py-4  transition-colors duration-300 font-medium text-xl hover:text-indigo-600 focus:text-indigo-600 focus:outline-none focus-visible:outline-none lg:px-8"
                     to="alljobs"
+                    onClick={handleNavLinkClick}
                   >
                     <span className="flex gap-1 items-end">
                       Jobs <ChevronDown className=" w-4" />
@@ -121,6 +148,7 @@ ${
                     aria-haspopup="false"
                     className="flex items-center gap-2 py-4 transition-colors duration-300 font-medium text-xl hover:text-indigo-600 focus:text-indigo-600 focus:outline-none focus-visible:outline-none lg:px-8"
                     to="/about"
+                    onClick={handleNavLinkClick}
                   >
                     <span className="flex gap-1 items-end">
                       About <ChevronDown className=" w-4" />
@@ -133,6 +161,7 @@ ${
                     aria-haspopup="false"
                     className="flex items-center gap-2 py-4 transition-colors duration-300 font-medium text-xl hover:text-indigo-600 focus:text-indigo-600 focus:outline-none focus-visible:outline-none lg:px-8"
                     to="/contact"
+                    onClick={handleNavLinkClick}
                   >
                     <span className="flex gap-1 items-end">
                       Contact <ChevronDown className=" w-4" />
