@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import getCompanies from "@/api/companies";
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,

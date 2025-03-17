@@ -1,32 +1,34 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Star } from 'lucide-react'
+import { Card, CardContent } from "@/components/ui/card";
+import { Star } from "lucide-react";
 
-
-
-const testimonials= [
+const testimonials = [
   {
-    quote: "I found my first job through Fresher.Jobs. The process was smooth and the support was great!",
+    quote:
+      "I found my first job through Fresher.Jobs. The process was smooth and the support was great!",
     author: "Sarah K.",
-    role: "Software Developer"
+    role: "Software Developer",
   },
   {
-    quote: "As a recent graduate, Fresher.Jobs helped me land interviews with top companies in my field.",
+    quote:
+      "As a recent graduate, Fresher.Jobs helped me land interviews with top companies in my field.",
     author: "Alex M.",
-    role: "Marketing Associate"
+    role: "Marketing Associate",
   },
   {
-    quote: "The resources and job listings on FresherJobs are tailored for newcomers. Highly recommended!",
+    quote:
+      "The resources and job listings on FresherJobs are tailored for newcomers. Highly recommended!",
     author: "Emily R.",
-    role: "Data Analyst"
-  }
-]
-
+    role: "Data Analyst",
+  },
+];
 
 export default function Revews() {
   return (
     <section className="w-full px-4 py-12 ">
-      <div className="max-w-6xl mx-auto space-y-12 bg-[#1a0d26]
-      ">
+      <div
+        className="max-w-6xl mx-auto space-y-12 bg-[#1a0d26]
+      "
+      >
         {/* Testimonials */}
         <div className="grid gap-6 md:grid-cols-3 ">
           {testimonials.map((testimonial, index) => (
@@ -50,10 +52,7 @@ export default function Revews() {
             </Card>
           ))}
         </div>
-
-       
       </div>
     </section>
-  )
+  );
 }
-

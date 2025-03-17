@@ -1,11 +1,9 @@
-/* eslint-disable no-undef */
 // @ts-nocheck
 ("use client");
 import getCompanies from "@/api/companies";
 import getJobs from "@/api/jobs";
-import JobListing from "@/Components/Home/JobListing";
 import JobCard from "@/components/JobCard";
-import Loader from "@/Components/Loader";
+import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {

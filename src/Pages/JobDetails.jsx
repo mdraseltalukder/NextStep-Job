@@ -1,8 +1,8 @@
 import { getHiringJob, getSingleJob } from "@/api/jobs";
-import { ApplicationDialog } from "@/Components/ApplicaionDialog";
-import ApplicationCard from "@/Components/ApplicationCard";
-import Loader from "@/Components/Loader";
-import { Card } from "@/Components/ui/card";
+import { ApplicationDialog } from "@/components/ApplicaionDialog";
+import ApplicationCard from "@/components/ApplicationCard";
+import Loader from "@/components/Loader";
+import { Card } from "@/components/ui/card";
 import {
   Select,
   SelectContent,

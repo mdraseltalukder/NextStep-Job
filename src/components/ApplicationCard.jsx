@@ -1,5 +1,4 @@
 import updateApplicationStatus from "@/api/applications";
-import { EditJobs } from "@/api/jobs";
 import {
   Select,
   SelectContent,

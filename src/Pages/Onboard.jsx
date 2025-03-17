@@ -1,4 +1,4 @@
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/clerk-react";
 import { useEffect } from "react";
 import toast from "react-hot-toast";

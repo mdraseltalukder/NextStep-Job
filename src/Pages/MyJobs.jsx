@@ -1,5 +1,5 @@
-import CreatedJobs from "@/Components/CreatedJobs";
-import UserApplications from "@/Components/UserApplications";
+import CreatedJobs from "@/components/CreatedJobs";
+import UserApplications from "@/components/UserApplications";
 import { useUser } from "@clerk/clerk-react";
 
 export default function MyJobs() {

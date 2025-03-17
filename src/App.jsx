@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { Toaster } from "react-hot-toast";
 import "./App.css";
-import AuthenticatedRoute from "./Components/AuthenticatedRoute";
-import Root from "./Components/Layout/Root";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import Root from "./components/Layout/Root";
+import { ThemeProvider } from "./components/theme-provider";
 import About from "./Pages/About";
 import AllJobs from "./Pages/AllJobs";
 import Applicants from "./Pages/Applicants";
@@ -13,7 +14,6 @@ import JobDetails from "./Pages/JobDetails";
 import MyJobs from "./Pages/MyJobs";
 import Onboard from "./Pages/Onboard";
 import Postjob from "./Pages/Postjob";
-import { ThemeProvider } from "./Components/theme-provider";
 
 const router = createBrowserRouter([
   {
