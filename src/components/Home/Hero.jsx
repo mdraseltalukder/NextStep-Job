@@ -1,7 +1,27 @@
+import getCompanies from "@/api/companies";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import useFetch from "@/hooks/useFetch";
+import { useUser } from "@clerk/clerk-react";
 import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { Button } from "../ui/button";
 
 export default function Hero() {
+  const { isLoaded } = useUser();
+  const [company, setCompany] = useState("");
+  const { data: companies, fetchData: fetchCompanies } = useFetch(getCompanies);
+  useEffect(() => {
+    if (isLoaded) fetchCompanies();
+  }, [isLoaded]);
+
   return (
     <div
       className="w-full min-h-[450px] flex items-center relative overflow-hidden h-[90vh]  after:absolute after:w-full after:h-full dark:after:bg-indigo-950/70 "
@@ -44,12 +64,25 @@ export default function Hero() {
           {/* Search form */}
           <div className="flex flex-col sm:flex-row gap-2">
             <div className="relative flex-1">
-              <select className="w-full h-12 px-4 border border-gray-200 rounded-md appearance-none dark:text-black">
-                <option>Job Title</option>
-                <option>Software Developer</option>
-                <option>UX Designer</option>
-                <option>Product Manager</option>
-              </select>
+              <Select
+                value={company}
+                onValueChange={(value) => setCompany(value)}
+              >
+                <SelectTrigger className="w-full md:w-[200px]">
+                  <SelectValue placeholder="Filter by Company..." />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {companies.map(({ name, id }) => {
+                      return (
+                        <SelectItem key={id} value={id}>
+                          {name}
+                        </SelectItem>
+                      );
+                    })}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
               <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
                 <svg
                   width="12"
@@ -68,40 +101,15 @@ export default function Hero() {
                 </svg>
               </div>
             </div>
-
-            <div className="relative flex-1">
-              <select className="w-full h-12 px-4 border border-gray-200 rounded-md appearance-none dark:text-black">
-                <option>All category</option>
-                <option>Technology</option>
-                <option>Marketing</option>
-                <option>Finance</option>
-              </select>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  width="12"
-                  height="6"
-                  viewBox="0 0 12 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L6 5L11 1"
-                    stroke="#6B7280"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            <Button
-              variant={"primary"}
-              className="h-12 px-8   rounded-md flex items-center justify-center gap-2 hover:scale-.95 transition-colors"
-            >
-              <Search className="w-4 h-4 text-white dark:text-black" />
-              <span className="text-white dark:text-black">Search</span>
-            </Button>
+            <Link to="/alljobs">
+              <Button
+                variant={"primary"}
+                className=" px-8   rounded-md flex items-center justify-center gap-2 hover:scale-.95 transition-colors"
+              >
+                <Search className="w-4 h-4 text-white dark:text-black" />
+                <span className="text-white dark:text-black">Search</span>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
