@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export default function DreamJob() {
   return (
-    <div className="flex flex-col items-center mx-auto gap-5 py-20 lg:py-30">
+    <div className="flex flex-col items-center mx-auto gap-5 py-20 lg:py-30 mt-64 lg:mt-32">
       <h2 className="text-2xl lg:text-3xl">Your Dream jobs are Waiting</h2>
       <p className="lg:text-xl">
         Over ! million interections, 50,000 success stories Make Yours now
