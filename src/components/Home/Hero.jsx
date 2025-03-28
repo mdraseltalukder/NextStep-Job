@@ -1,36 +1,31 @@
-import getCompanies from "@/api/companies";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import useFetch from "@/hooks/useFetch";
-import { useUser } from "@clerk/clerk-react";
-import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
+// import getCompanies from "@/api/companies";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
+// import useFetch from "@/hooks/useFetch";
+// import { Search } from "lucide-react";
+// import { useEffect, useState } from "react";
+// import { Link } from "react-router";
+// import { Button } from "../ui/button";
+import { Briefcase, MapPin, Search, TrendingUp } from "lucide-react";
 import { Link } from "react-router";
-import { Button } from "../ui/button";
-
 export default function Hero() {
-  const { isLoaded } = useUser();
-  const [company, setCompany] = useState("");
-  const { data: companies, fetchData: fetchCompanies } = useFetch(getCompanies);
-  useEffect(() => {
-    if (isLoaded) fetchCompanies();
-  }, [isLoaded]);
+  // const { isLoaded } = useUser();
+  // const [company, setCompany] = useState("");
+  // const { data: companies, fetchData: fetchCompanies } = useFetch(getCompanies);
+  // useEffect(() => {
+  //   if (isLoaded) fetchCompanies();
+  // }, [isLoaded]);
 
   return (
-    <div
-      className="w-full min-h-[450px] flex items-center relative overflow-hidden h-[90vh]  after:absolute after:w-full after:h-full dark:after:bg-indigo-950/70 "
-      style={{
-        backgroundImage: "url('images/banner-2.jpg')",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <div className="w-full min-h-[450px] flex flex-col items-center relative overflow-hidden h-[90vh]  after:absolute after:w-full after:h-full dark:after:bg-indigo-950/70 ">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] bg-[length:20px_20px]"></div>
       <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
         {/* Left side with image */}
         <div className="w-full md:w-1/2 flex justify-center md:justify-start">
@@ -47,70 +42,76 @@ export default function Hero() {
         </div>
 
         {/* Right side with content */}
-        <div className="w-full md:w-1/2 space-y-6">
-          <div className="space-y-2">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white ">
-              Our Excellent Find Job
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-24 sm:pb-20">
+          <div className="text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white tracking-tight">
+              Find Your Dream Job Today
+              <span className="block  text-indigo-600 mt-3">
+                Build Your Future
+              </span>
             </h1>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 dark:text-white">
-              Best Career
-            </h2>
-            <p className="text-gray-500 dark:text-white mt-2">
-              There are many variations passages of Lorem Ipsum Fasts by
-              injected humour, or randomised words which...
+            <p className="text-gray-500 dark:text-white mt-6 max-w-3xl mx-auto">
+              Connect with top employers and discover opportunities that match
+              your skills and aspirations. Your next career move starts here.
             </p>
-          </div>
 
-          {/* Search form */}
-          <div className="flex flex-col sm:flex-row gap-2">
-            <div className="relative flex-1">
-              <Select
-                value={company}
-                onValueChange={(value) => setCompany(value)}
-              >
-                <SelectTrigger className="w-full md:w-[200px]">
-                  <SelectValue placeholder="Filter by Company..." />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {companies.map(({ name, id }) => {
-                      return (
-                        <SelectItem key={id} value={id}>
-                          {name}
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <svg
-                  width="12"
-                  height="6"
-                  viewBox="0 0 12 6"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 1L6 5L11 1"
-                    stroke="#6B7280"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+            {/* Search Box */}
+            <div className="mt-10 max-w-2xl mx-auto">
+              <div className="bg-white dark:bg-black p-4 rounded-lg shadow-lg flex flex-col sm:flex-row gap-4">
+                <div className="flex-1 relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <input
+                    type="text"
+                    placeholder="Job title or keyword"
+                    className="w-full dark:bg-black pl-10 pr-4 py-3 rounded-md border border-gray-200 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
-                </svg>
+                </div>
+                <div className="flex-1 relative">
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    className="w-full dark:bg-black pl-10 pr-4 py-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                <Link to={"/alljobs"}>
+                  <button className="bg-blue-600 text-white px-8 py-3 rounded-md hover:bg-blue-700 transition-colors duration-200 flex-shrink-0">
+                    Search Jobs
+                  </button>
+                </Link>
               </div>
             </div>
-            <Link to="/alljobs">
-              <Button
-                variant={"primary"}
-                className=" px-8   rounded-md flex items-center justify-center gap-2 hover:scale-.95 transition-colors"
-              >
-                <Search className="w-4 h-4 text-white dark:text-black" />
-                <span className="text-white dark:text-black">Search</span>
-              </Button>
-            </Link>
           </div>
+        </div>
+      </div>
+
+      {/* Stats */}
+      <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3 max-w-5xl mx-auto relative z-10">
+        <div className="bg-white dark:bg-black rounded-lg p-6 shadow-md">
+          <Briefcase className="h-8 w-8 text-blue-600 mx-auto" />
+          <div className="mt-4 text-2xl font-bold text-gray-900 dark:text-foreground">
+            10,000+
+          </div>
+          <div className="text-gray-600 dark:text-foreground">
+            Active Job Listings
+          </div>
+        </div>
+        <div className="bg-white rounded-lg p-6 shadow-md dark:bg-black">
+          <TrendingUp className="h-8 w-8 text-blue-600 mx-auto" />
+          <div className="mt-4 text-2xl font-bold text-gray-900 dark:text-foreground">
+            8,500+
+          </div>
+          <div className="text-gray-600 dark:text-foreground">
+            Companies Hiring
+          </div>
+        </div>
+        <div className="bg-white rounded-lg p-6 shadow-md dark:bg-black">
+          <div className="h-8 w-8 text-blue-600 mx-auto">🎯</div>
+          <div className="mt-4 text-2xl font-bold text-gray-900 dark:text-foreground">
+            95%
+          </div>
+          <div className="text-gray-600 dark:text-foreground">Success Rate</div>
         </div>
       </div>
     </div>
